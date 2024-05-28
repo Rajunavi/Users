@@ -44,6 +44,25 @@ app.post('/api/adduser', (req, res) => {
   res.status(200).json(users);
 });
 
+app.delete('/api/delete/:id', (req, res) => {
+  const id = req.params.id;
+  users = users.filter(user => user.id !== parseInt(id));
+  res.status(200).json(users);
+})
+
+app.put('/api/update/:id', (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+  users = users.map(user => {
+    if(user.id === parseInt(id)) {
+      return { ...user, ...data };
+    }
+    return user
+  });
+res.status(200).json(users);
+})
+
+
 // Define routes
 app.get('/api/users', (req, res) => {
     res.json(users);
