@@ -1,0 +1,120 @@
+.users {
+  width: 70%;
+  margin: 10px auto;
+  border-collapse: collapse;
+  border: 2px solid #ddd;
+  font-size: 18px;
+}
+
+.users tr th {
+  background-color: #f2f2f2; /* Background color for header cells */
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+.users tr td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; 
+}
+
+.users tr td img{
+  transition: transform 0.3s;
+  width: 30px;
+  height: 30px;
+}
+
+.users tr td img:hover{
+  transform: scale(1.1);
+}
+
+.header {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.header img {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+}
+.header p {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* form css */
+form {
+  max-width: 400px;
+  margin: 150px auto;
+  padding: 2em;
+  border: 2px solid #ccc;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form .box {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+form .box label {
+  margin-bottom: .5em;
+  color: #333333;
+  display: block;
+}
+
+form .box input {
+  border: 1px solid #CCCCCC;
+  padding: .5em;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form .box span {
+  color: red;
+  font-size: 0.8em;
+}
+
+form button {
+  padding: 0.7em;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: .3em;
+  cursor: pointer;
+}
+
+form button:disabled {
+  background-color: #cccccc;
+}
+
+
+/* banner css */
+.banner {
+  width: 30%;
+  border: 1px solid #48ff00;
+  padding: 0.5em 2em;
+  position: fixed;
+  top: 1em;
+  left: 33%;
+  border-radius: 10px;
+  background-color: #00ff2a8a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner button {
+  background-color: #0011ffa1;
+  padding: 5px 15px;
+  border-radius: 10px;
+  color: #ffff;
+  border: 1px solid #0314ff;
+}
