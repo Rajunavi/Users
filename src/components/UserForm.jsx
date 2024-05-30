@@ -30,7 +30,6 @@ function UserForm() {
             } else {
                 const response = await axiosInstanse.post('/adduser', values)
                 const result = await response.data;
-                console.log('result', result)
                 dispatch(addAllUsers(result))
                 dispatch(bannerAction("User Added Successfully"));
             }
