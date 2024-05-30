@@ -20,14 +20,16 @@ function UserForm() {
     const onSubmit = async (values) => {
         try {
             if(editUser){
-                const index = users?.findIndex((item) => item.id === editUser.id);
-                const updateUsers = [...users?.slice(0, index), {...values, id:editUser.id}, ...users?.slice(index + 1)]
+                // const index = users?.findIndex((item) => item.id === editUser.id);
+                // const updateUsers = [...users?.slice(0, index), {...values, id:editUser.id}, ...users?.slice(index + 1)]
+              const response = await axiosInstanse.put(`update/${editUser.id}`, values);
+              const updateUsers = await response.data;
+
                 dispatch(addAllUsers(updateUsers))
                 dispatch(bannerAction("User Updated Successfully"));
             } else {
                 const response = await axiosInstanse.post('/adduser', values)
                 const result = await response.data;
-                console.log('result', result)
                 dispatch(addAllUsers(result))
                 dispatch(bannerAction("User Added Successfully"));
             }

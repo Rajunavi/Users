@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { addAllUsers, addEditUser, getAllUsers } from '../redux/userSlice';
+import { addAllUsers, addEditUser } from '../redux/userSlice';
 import back from '../assets/left-arrow.png'
 import { useNavigate } from 'react-router-dom';
 import del from '../assets/delete.png'
 import edit from '../assets/pencil.png'
+import { axiosInstanse } from '../axiosInstanse';
 
 function Users() {
     // const [users, setUsers] = useState([]);
 
-    const {users, editUser} = useSelector(state => state.users);
+    const {users} = useSelector(state => state.users);
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
@@ -19,10 +19,18 @@ function Users() {
         navigate("/adduser")
     }
 
-    const onDelete = (id) => {
-        const index = users?.findIndex((item) => item.id === id);
-                const updateUsers = [...users?.slice(0, index), ...users?.slice(index + 1)]
-                dispatch(addAllUsers(updateUsers))
+    const onDelete = async(id) => {
+        // const index = users?.findIndex((item) => item.id === id);
+        //         const updateUsers = [...users?.slice(0, index), ...users?.slice(index + 1)]
+
+        try {
+            const response = await axiosInstanse.delete(`delete/${id}`);
+            const updateUsers = await response.data;
+            
+            dispatch(addAllUsers(updateUsers))
+        } catch (error) {
+            console.log('error', error)
+        }
     }
 
     const onBack = () => {
