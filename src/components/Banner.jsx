@@ -11,8 +11,6 @@ function Banner({message, btnText, reset}) {
     const onClickHandler = () => {
         dispatch(bannerAction(false));
         navigate('/',{replace:true})
-        dispatch(addEditUser(null));
-        reset()
     }
   return (
     <div className='banner'>
