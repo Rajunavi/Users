@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { axiosInstanse } from "../axiosInstanse";
+import { axiosInstanse } from "../axiosInstance";
 
 const initialState = {
     banner:'',

@@ -1,14 +1,13 @@
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addAllUsers, addEditUser } from '../redux/userSlice';
 import back from '../assets/left-arrow.png'
 import { useNavigate } from 'react-router-dom';
 import del from '../assets/delete.png'
 import edit from '../assets/pencil.png'
-import { axiosInstanse } from '../axiosInstanse';
+import { axiosInstance } from '../axiosInstance';
 
 function Users() {
-    // const [users, setUsers] = useState([]);
-
     const {users} = useSelector(state => state.users);
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -20,11 +19,8 @@ function Users() {
     }
 
     const onDelete = async(id) => {
-        // const index = users?.findIndex((item) => item.id === id);
-        //         const updateUsers = [...users?.slice(0, index), ...users?.slice(index + 1)]
-
         try {
-            const response = await axiosInstanse.delete(`delete/${id}`);
+            const response = await axiosInstance.delete(`delete/${id}`);
             const updateUsers = await response.data;
             
             dispatch(addAllUsers(updateUsers))
@@ -41,7 +37,7 @@ function Users() {
   return (
     <div style={{width:"100%"}}>
         <div className='header'>
-            <img src={back} alt='img' onClick={onBack}/>
+            <img src={back} alt='back' onClick={onBack}/>
             <p>User Details</p>
         </div>
         <table className='users'>
@@ -61,8 +57,8 @@ function Users() {
                     <td>{item.name}</td>
                     <td>{item.mobile}</td>
                     <td>{item.email}</td>
-                    <td><img src={edit} onClick={() => onEdit(item.id)} /></td>
-                    <td><img src={del} onClick={() => onDelete(item.id)} /></td>
+                    <td><img alt='edit' src={edit} onClick={() => onEdit(item.id)} /></td>
+                    <td><img alt="delete" src={del} onClick={() => onDelete(item.id)} /></td>
                 </tr>
                 ))
             }</tbody>

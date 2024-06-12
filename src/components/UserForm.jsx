@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import Banner from './Banner';
 import { useDispatch, useSelector } from 'react-redux';
-import { addAllUsers, bannerAction, getAllUsers } from '../redux/userSlice';
-import { axiosInstanse } from '../axiosInstanse';
+import { addAllUsers, bannerAction } from '../redux/userSlice';
+import { axiosInstance } from '../axiosInstance';
 
 function UserForm() {
-
-    const { banner, editUser, users } = useSelector(state => state.users);
+    const { banner, editUser } = useSelector(state => state.users);
     const { register, handleSubmit, formState:{errors}, reset} = useForm({
         defaultValues: editUser ? editUser :{
             name:"",
             mobile:"",
-            email:""
+            email:"" 
         }
     });
     const dispatch = useDispatch()
@@ -20,15 +19,12 @@ function UserForm() {
     const onSubmit = async (values) => {
         try {
             if(editUser){
-                // const index = users?.findIndex((item) => item.id === editUser.id);
-                // const updateUsers = [...users?.slice(0, index), {...values, id:editUser.id}, ...users?.slice(index + 1)]
-              const response = await axiosInstanse.put(`update/${editUser.id}`, values);
+              const response = await axiosInstance.put(`update/${editUser.id}`, values);
               const updateUsers = await response.data;
-
                 dispatch(addAllUsers(updateUsers))
                 dispatch(bannerAction("User Updated Successfully"));
             } else {
-                const response = await axiosInstanse.post('/adduser', values)
+                const response = await axiosInstance.post('/adduser', values)
                 const result = await response.data;
                 dispatch(addAllUsers(result))
                 dispatch(bannerAction("User Added Successfully"));
@@ -44,16 +40,18 @@ function UserForm() {
     {banner.length > 0 && <Banner message={banner} btnText="Show" reset={reset}/>}
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='box'>
-        <label>Username:</label>
+        <label htmlFor='name'>Username:</label>
         <input
           type="text"
+          id='name'
           {...register("name", { required: "Field shouldn't be blank"})}
         />
         {errors.name && <span>{errors.name.message}</span>}
       </div>
       <div className='box'>
-        <label>Mobile:</label>
+        <label htmlFor='mobile'>Mobile:</label>
         <input
+          id="mobile"
           type="text"
           {...register("mobile",{
             required: 'Mobile number is required',
@@ -66,8 +64,9 @@ function UserForm() {
         {errors.mobile && <span>{errors.mobile.message}</span>}
       </div>
       <div className='box'>
-        <label>Email:</label>
+        <label htmlFor='email'>Email:</label>
         <input
+        id='email'
           type="email"
           {...register("email",{
             required: 'Email is required',

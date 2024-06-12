@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { addEditUser, bannerAction } from '../redux/userSlice';
 
-function Banner({message, btnText, reset}) {
+function Banner({message, btnText}) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
