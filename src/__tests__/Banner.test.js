@@ -47,8 +47,6 @@ describe('Banner Component', () => {
   });
 
   test('renders message and button', () => {
-    
-
     expect(screen.getByText('Test Message')).toBeInTheDocument();
     expect(screen.getByText('Click Me')).toBeInTheDocument();
   });

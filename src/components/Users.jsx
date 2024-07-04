@@ -9,10 +9,10 @@ import { axiosInstance } from '../axiosInstance';
 
 function Users() {
     const {users} = useSelector(state => state.users);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const onEdit = (id) => {
+    const onEdit = (id) => {    
         const user = users?.find((item) => item.id === id)
         dispatch(addEditUser(user));
         navigate("/adduser")

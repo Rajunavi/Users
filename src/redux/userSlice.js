@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { axiosInstanse } from "../axiosInstance";
+import { axiosInstance } from "../axiosInstance";
 
 const initialState = {
     banner:'',
@@ -12,7 +12,7 @@ const initialState = {
 export const getAllUsers = createAsyncThunk(
     'user/getAllUsers',
     async () => {
-      return await axiosInstanse.get('users').then(response => response.data);
+      return await axiosInstance.get('users').then(response => response.data);
     }
   );
 
